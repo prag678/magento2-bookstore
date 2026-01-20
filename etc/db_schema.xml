@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="magediary_authors" resource="default" engine="innodb">
+        <column name="author_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true" comment="author id"/>
+        <column name="name" xsi:type="varchar" length="255" nullable="false" comment="author name"/>
+        <column name="bio" xsi:type="text" nullable="true" comment="bio"/>
+        <column name="contents" xsi:type="mediumtext"  nullable="true" comment="contents"/>
+        <column name="status" xsi:type="boolean" nullable="false" default="1" comment="Status"/>
+        <column name="creation_time" xsi:type="timestamp"  on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column  name="update_time" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Modification Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="author_id"/>
+        </constraint>
+    </table>
+
+    <table name="magediary_books" resource="default" engine="innodb">
+        <column name="book_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"/>
+        <column name="title" xsi:type="varchar" length="255" nullable="false"/>
+        <column name="author_id" xsi:type="int" padding="10" unsigned="true" nullable="false"/>
+        <column name="description" xsi:type="text" nullable="true"/>
+        <column name="published_year" xsi:type="int" padding="4" nullable="true"/>
+        <column name="contents" xsi:type="mediumtext"  nullable="true" comment="contents"/>
+        <column name="status" xsi:type="boolean" nullable="false" default="1" comment="Status"/>
+        <column  name="creation_time" xsi:type="timestamp" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Creation Time"/>
+        <column  name="update_time" xsi:type="timestamp" on_update="true" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Modification Time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="book_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="BOOK_AUTHOR_FK" table="magediary_books" column="author_id"
+                    referenceTable="magediary_authors" referenceColumn="author_id" onDelete="NO ACTION"/>
+    </table>
+</schema>

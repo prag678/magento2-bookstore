@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+
+<menu>
+    <add id="Magediary_Bookstore::bookstore"
+         title="Bookstore"
+         module="Magediary_Bookstore"
+         sortOrder="100"
+         resource="Magediary_Bookstore::bookstore"
+    />
+    <add id="Magediary_Bookstore::authors"
+         title="Authors"
+         module="Magediary_Bookstore"
+         sortOrder="10"
+         parent="Magediary_Bookstore::bookstore"
+         action="magediary_bookstore/author/index"
+         resource="Magediary_Bookstore::authors"
+    />
+    <add id="Magediary_Bookstore::books"
+         title="Books"
+         module="Magediary_Bookstore"
+         sortOrder="20"
+         parent="Magediary_Bookstore::bookstore"
+         action="magediary_bookstore/book/index"
+         resource="Magediary_Bookstore::books"
+    />
+</menu>
+</config>

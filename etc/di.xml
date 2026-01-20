@@ -1,0 +1,39 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Author Configuration -->
+    <preference for="Magediary\Bookstore\Api\AuthorRepositoryInterface" type="Magediary\Bookstore\Model\AuthorRepository"/>
+    <preference for="Magediary\Bookstore\Api\Data\AuthorInterface" type="Magediary\Bookstore\Model\Author"/>
+    <preference for="Magediary\Bookstore\Api\Data\AuthorSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <virtualType name="Magediary\Bookstore\Model\ResourceModel\Author\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magediary_authors</argument>
+            <argument name="resourceModel" xsi:type="string">Magediary\Bookstore\Model\ResourceModel\Author</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Book Configuration -->
+    <preference for="Magediary\Bookstore\Api\BookRepositoryInterface" type="Magediary\Bookstore\Model\BookRepository"/>
+    <preference for="Magediary\Bookstore\Api\Data\BookInterface" type="Magediary\Bookstore\Model\Book"/>
+    <preference for="Magediary\Bookstore\Api\Data\BookSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+
+    <virtualType name="Magediary\Bookstore\Model\ResourceModel\Book\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magediary_books</argument>
+            <argument name="resourceModel" xsi:type="string">Magediary\Bookstore\Model\ResourceModel\Book</argument>
+        </arguments>
+    </virtualType>
+
+    <!-- CollectionFactory for both -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="magediary_bookstore_author_listing_data_source" xsi:type="string">Magediary\Bookstore\Model\ResourceModel\Author\Grid\Collection</item>
+                <item name="magediary_bookstore_book_listing_data_source" xsi:type="string">Magediary\Bookstore\Model\ResourceModel\Book\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
+

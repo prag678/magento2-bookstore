@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="magediary_book_slider" class="Magediary\Bookstore\Block\Widget\Books">
+        <label translate="true">Book List Slider</label>
+        <description translate="true">Displays a list of books in a slider</description>
+        <parameters>
+            <parameter name="books_per_slide" xsi:type="text" sort_order="10" visible="true">
+                <label translate="true">Books Per Slide</label>
+                <value>3</value>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

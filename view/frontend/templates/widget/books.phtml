@@ -1,0 +1,48 @@
+<?php
+/** @var \Magediary\Bookstore\Block\Widget\Books $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$books = $block->getBooks();
+$booksPerSlide = (int) $block->getBooksPerSlide();
+?>
+
+<div class="book-carousel-container">
+    <div class="book-carousel">
+        <?php foreach ($books as $book): ?>
+            <div class="book-slide item">
+                <div class="book-card">
+                    <h4><?= $escaper->escapeHtml($book->getTitle()) ?></h4>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".book-carousel": {
+            "slick": {
+                "slidesToShow": <?= $escaper->escapeHtml($booksPerSlide) ?>,
+                "slidesToScroll": 1,
+                "infinite": true,
+                "dots": false,
+                "arrows": true,
+                "autoplay": true,
+                "autoplaySpeed": 4000,
+                "responsive": [
+                    {
+                        "breakpoint": 768,
+                        "settings": {
+                            "slidesToShow": 2
+                        }
+                    },
+                    {
+                        "breakpoint": 480,
+                        "settings": {
+                            "slidesToShow": 1
+                        }
+                    }
+                ]
+            }
+        }
+    }
+</script>

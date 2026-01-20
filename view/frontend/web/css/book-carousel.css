@@ -1,0 +1,42 @@
+.book-carousel-container {
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.book-carousel {
+    margin: 0 auto;
+    position: relative;
+}
+
+.book-carousel .book-card {
+    background: #f8f8f8;
+    padding: 20px;
+    border: 1px solid #e3e3e3;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 8px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-carousel .slick-slide {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.book-carousel .slick-prev,
+.book-carousel .slick-next {
+    background-color: #eee;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    z-index: 5;
+}
+
+.book-carousel .slick-prev:before,
+.book-carousel .slick-next:before {
+    color: #000;
+    font-size: 20px;
+}

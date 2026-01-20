@@ -1,0 +1,60 @@
+<?php
+/** @var \Magediary\Bookstore\Block\Index\Books $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$books = $block->getBookCollection();
+?>
+
+<h1><?= $escaper->escapeHtml(__('Books & Authors')) ?></h1>
+<div class="search-form">
+    <input type="text" id="live-search" class="search-input"
+           placeholder="<?= $escaper->escapeHtmlAttr(__('Search by title or author')) ?>"
+           aria-label="<?= $escaper->escapeHtmlAttr(__('Search books')) ?>" />
+</div>
+<?php if ($books->getSize()): ?>
+    <table class="bookstore-table" id="books-table">
+        <thead>
+        <tr>
+            <th><?= $escaper->escapeHtml(__('Title')) ?></th>
+            <th><?= $escaper->escapeHtml(__('Author')) ?></th>
+            <th><?= $escaper->escapeHtml(__('Year')) ?></th>
+            <th><?= $escaper->escapeHtml(__('Description')) ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($books as $book): ?>
+            <tr>
+                <td class="title" data-original="<?= $escaper->escapeHtml($book->getTitle()) ?>">
+                    <?= $escaper->escapeHtml($book->getTitle()) ?>
+                </td>
+                <td class="author" data-original="<?= $escaper->escapeHtml($book->getAuthorName()) ?>">
+                    <?= $escaper->escapeHtml($book->getAuthorName()) ?>
+                </td>
+                <td><?= $escaper->escapeHtml($book->getPublishedYear()) ?></td>
+                <td><?= $escaper->escapeHtml($book->getDescription()) ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <p><?= $escaper->escapeHtml(__('No books found.')) ?></p>
+<?php endif; ?>
+
+<?php if ($block->getPagerHtml()): ?>
+    <div class="pager-wrapper" id="pager-wrapper">
+        <div class="products-toolbar toolbar bottom">
+            <?= $block->getPagerHtml(); ?>
+        </div>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magediary_Bookstore/js/book-live-search": {
+                "inputId": "#live-search",
+                "tableId": "#books-table",
+                "pagerId": "#pager-wrapper"
+            }
+        }
+    }
+</script>
